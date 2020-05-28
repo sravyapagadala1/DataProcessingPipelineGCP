@@ -1,0 +1,76 @@
+Install MongoDB on CDH 6.3 in GCP:
+==================================
+
+sudo ls /etc/yum.repos.d/
+
+
+sudo vi /etc/yum.repos.d/mongodb-org-4.2.repo
+
+[mongodb-org-4.2]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc
+
+
+sudo ls /etc/yum.repos.d/mongodb-org-4.2.repo
+
+
+sudo yum install mongodb-org
+
+
+sudo systemctl start mongod
+
+
+sudo systemctl enable mongod
+
+
+sudo systemctl status mongod
+
+
+sudo systemctl stop mongod
+
+
+mongo
+
+db.version()
+
+
+Additional Configuration:
+
+
+/etc/mongod.conf
+
+sudo vi /etc/mongod.conf
+
+security:
+  authorization: enabled
+
+
+sudo systemctl restart mongod
+
+mongo
+
+use admin
+
+db.createUser(
+  {
+    user: "adminuser", 
+    pwd: "adminuser", 
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)
+
+or
+
+db.createUser({user: "adminuser", pwd: "adminuser", roles:[{role: "userAdminAnyDatabase", db: "admin"}]})
+
+
+mongo -u adminuser -p --authenticationDatabase admin
+
+
+show dbs
+
+show collections
+

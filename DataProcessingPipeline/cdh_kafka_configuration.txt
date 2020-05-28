@@ -1,0 +1,35 @@
+Install Kafka On CDH:
+
+Kafka Configuration
+
+
+advertised.host.name
+10.128.0.2
+
+External IP / Public IP address : 35.238.42.190
+
+
+
+Kafka Broker Advanced Configuration Snippet (Safety Valve) for kafka.properties
+
+listeners=PLAINTEXT://10.128.0.2:9092
+advertised.listeners=PLAINTEXT://35.238.42.190:9092
+
+
+Create Kafka Topic:
+
+kafka-topics --create --zookeeper localhost:2181 --partitions 1 --replication-factor 1 --topic msgtopic
+
+kafka-topics --zookeeper localhost:2181 --list
+
+
+Command-line Kafka Producer:
+
+kafka-console-producer --broker-list 35.238.42.190:9092 --topic msgtopic
+
+Command-line Kafka Consumer:
+
+kafka-console-consumer --bootstrap-server 35.238.42.190:9092 --topic msgtopic
+
+
+

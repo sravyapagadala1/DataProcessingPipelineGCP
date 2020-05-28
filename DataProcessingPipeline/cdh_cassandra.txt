@@ -1,0 +1,63 @@
+Install Apache Cassandra on CDH 6.3 Cluster in GCP:
+===================================================
+
+sudo ls /etc/yum.repos.d/
+
+sudo vi /etc/yum.repos.d/cassandra.repo
+
+[cassandra]
+name=Apache Cassandra
+baseurl=https://www.apache.org/dist/cassandra/redhat/311x/
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://www.apache.org/dist/cassandra/KEYS
+
+
+sudo yum install cassandra
+
+sudo systemctl enable cassandra
+
+sudo systemctl start cassandra
+
+sudo systemctl status cassandra
+
+free -h ---> 
+
+
+============= If cassandra service fail, consider this option
+
+/etc/systemd/system/cassandra.service
+
+[Unit]
+Description=Apache Cassandra
+After=network.target
+
+[Service]
+PIDFile=/var/run/cassandra/cassandra.pid
+User=cassandra
+Group=cassandra
+ExecStart=/usr/sbin/cassandra -f -p /var/run/cassandra/cassandra.pid
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+reload system services
+
+sudo systemctl daemon-reload
+
+
+sudo systemctl start cassandra
+
+sudo systemctl status cassandra
+
+sudo systemctl stop cassandra
+=============
+nodetool status
+
+cqlsh
+
+or
+
+cqlsh --cqlversion=3.4.4
+

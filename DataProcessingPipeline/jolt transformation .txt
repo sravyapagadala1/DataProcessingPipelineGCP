@@ -1,0 +1,12 @@
+[
+  {
+    "operation": "default",
+    "spec": {
+      "tran_detail": {
+        "tran_card_type": ["Visa", "MasterCard", "Maestro"],
+        "tran_amount": 150.5,
+        "product_id": "PID-001"
+      }
+    }
+  }
+]

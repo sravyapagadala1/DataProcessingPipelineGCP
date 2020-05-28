@@ -1,0 +1,28 @@
+Install Apache Nifi on a single node CDH 6.3 Cluster
+
+https://mirrors.gigenet.com/apache/nifi/1.11.4/nifi-1.11.4-bin.tar.gz
+
+wget the above link
+
+tar -xvzf nifi-1.11.4-bin.tar.gz
+
+[sravya_pagadala123@instance-1-cdh-hadoop bin]$ ./nifi.sh start
+
+Java home: /usr/java/jdk1.8.0_181-cloudera
+NiFi home: /home/sravya_pagadala123/nifi-1.11.4
+
+Bootstrap Config File: /home/sravya_pagadala123/nifi-1.11.4/conf/bootstrap.conf
+
+
+under the config and nifi-properties file the default port is 8080 : 
+
+# web properties #
+nifi.web.war.directory=./lib
+nifi.web.http.host=
+nifi.web.http.port=8080
+
+
+===================================
+
+http://35.238.42.190:8080/nifi/
+
